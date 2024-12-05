@@ -1,0 +1,35 @@
+Step 1: Download & install Virtual boxhttps://www.virtualbox.org/
+Step 2: Download Ubuntu 18.04 ISO https://ubuntu.com/download/desktop
+Step 3: Create Ubuntu VM in virtual box
+4GB RAM, 2 vCPUs, Hard disk capacity of minimum 10 GB
+Step 4: Update and Upgrade the SystemOpen terminal in Ubuntu
+> sudo su
+> sudo apt-get update –y CC apt-get upgrade –y
+> sudo reboot
+> sudo useradd –s /bin/bash –d /opt/stack –m stack
+Step 5: Create Stack user and assign sudo privilege
+>echo “stack ALL=(ALL) NOPASSWD: ALL” | sudo tee /etc/sudoers.d/stack
+Step 6: Install git and download DevStack
+>sudo su – stack
+If git not installed, install >sudo apt-get install git –y
+sudo git clone https://github.com/openstack-dev/devstack.git -b stable/pike devstack/
+Step 7: Create devstack configuration file
+>cd devstack
+Step 8: Then create a local.conf configuration file
+>sudo nano local.conf
+>cat . local.conf << EOF
+[[local|localrc]] ADMIN_PASSWORD=secret
+DATABASE_PASSWORD=\$ADMIN_PASSWORD 
+RABBIT_PASSWORD=\$ADMIN_PASSWORD 
+SERVICE_PASSWORD=\$ADMIN_PASSWORD HOST_IP=10.0.2.15 
+RECLONE=yesEOF
+>sudo apt-get install net-tools
+Step 9: Install OpenStack with Devstack
+>./stack.sh
+> FORCE=yes ./stack.sh
+Step 10: Accessing OpenStack on a web browser
+To access OpenStack via a web browser, browse your Ubuntu’s IP address as shown 
+https://server-ip/dashboard
+
+>openstack server list
+>openstack image list

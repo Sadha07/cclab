@@ -1,0 +1,16 @@
+Step 1: Download & install Virtual box https://www.virtualbox.org/ 
+Step 2: Download Ubuntu 18.04 ISO https://ubuntu.com/download/desktop
+Step 3: Create Ubuntu VM in virtual box 4GB RAM, 2 vCPUs, Hard disk capacity of 
+minimum 10 GB 
+Step 5: Create a new folder in the host OS (shared-VM) 
+Step 6: Open VM Virtualbox manager, Select your VM, go to settings Shared Folders 
+option and the files to be shared from the host OS 
+Step 7: Login to guest OS (Ubuntu OS), goto devices menu install guest additions. 
+Step 8: Open terminal and go > sudo adduser vboxuser vboxsf > sudo reboot 
+
+>sudo apt-get install -y build-essential linux-headers-$(uname -r)
+>sudo apt-get install virtualbox-guest-utils
+>sudo adduser S(whoami) vboxsf
+
+Step 9: Login to guest OS (Ubuntu OS), goto home folder to find the shared files 
+Step 10: Create a new file to share from guest OS to host OS

@@ -1,0 +1,55 @@
+Step 1: Configure the OpenNebula Repositories
+> apt-get update
+>echo"deb[signedby=/etc/apt/keyrings/opennebula.gpg]https://<token>@enterprise.open
+nebula.io/repo/6.10/Ubuntu/22.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+Step 2: Now install the required packages and ensure that the the keys are downloaded
+> apt-get update
+>apt-get -y install gnupg wget apt-transport-https
+> sudo wget -q -O- https://downloads.opennebula.io/repo/repo2.key | gpg --dearmor --yes 
+--output /etc/apt/keyrings/opennebula.gpg
+Step 3: Now Download OpenNebula
+>echo"deb[signedby=/etc/apt/keyrings/opennebula.gpg]https://downloads.opennebula.io/
+repo/6.10/Ubuntu/22.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+Step 4: Now Install OpenNebula
+> apt-get update
+> apt-get -y install opennebula opennebula-fireedge opennebula-gate opennebula-flow 
+opennebula-provision
+Step 5: Log in to your MySQL server and issue the following commands while replacing the 
+default password with your own secure password:
+$ mysql -u root -p
+Enter password:
+Welcome to the MySQL monitor. [...]
+mysql> CREATE USER 'oneadmin' IDENTIFIED BY '<default password>';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> GRANT ALL PRIVILEGES ON opennebula.* TO 'oneadmin';
+Query OK, 0 rows affected (0.00 sec)
+Step 6: Set the database Back-end and connection details in the configuration 
+file /etc/one/oned.conf as follows:
+DB = [BACKEND = "mysql",
+ SERVER = "localhost",
+ PORT = 0,
+ USER = "oneadmin",
+ PASSWD = "<the password>",
+ DB_NAME = "opennebula",
+ CONNECTIONS = 25,
+ COMPARE_BINARY = “no”]
+Step 7: Open Nebula’s initial deployment on first usage creates a user oneadmin inside the 
+OpenNebula based on a randomly generated password read from /var/lib/one/.one/one_auth. To 
+set your own user password from the very beginning, log in as the oneadmin system user with 
+this command:
+> sudo -u oneadmin /bin/sh
+Step 8: Create file /var/lib/one/.one/one_auth with initial password in the format 
+oneadmin:<password>
+> echo 'oneadmin: changeme123' > /var/lib/one/.one/one_auth
+Step 9: Start OpenNebula Services
+> systemctl start opennebula opennebula-fireedge opennebula-gate opennebula-flow
+Step 10: Enable OpenNebula Services
+> systemctl enable opennebula opennebula-fireedge opennebula-gate opennebula-flow
+Step 11: Verify Installation
+> oneuser show
+Step 12: Log in through the Sunstone GUI and Provision GUI.
+> http://<frontend_address>:2616/fireedge/sunstone
+> http://<frontend_address>:2616/fireedge/provision
+
+

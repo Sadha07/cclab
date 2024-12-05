@@ -1,0 +1,15 @@
+Step 1:Aneka platform download from the following link: 
+http://www.manjrasoft.com/manjrasoft_registration.php 
+Step 2: Run the installer package to start the Setup Wizard 
+Step 3: Specify the installation folder (By default Aneka is installed in C:\Program 
+Files\Manjrasoft\Aneka.3.0.) 
+Step 4: Confirm and start the installation
+Step 5: Confirm and start the installation by clicking next. 
+Step 6: After the installation gets completed close the wizard 
+Step 7: Launch aneka management studio from the start menu. 
+Step 8: Click "yes" We should add a repository to do remote installation so, specify the wizard by 
+name method. 
+Step 9: access URL access user access password and click "ok" 
+Step 10: Now, the repository will be present in the left navigation panel. 
+Step 11: Click the file menu and choose add machine and add your required machine 
+Step 12: Click on the machine credential and create the credentials

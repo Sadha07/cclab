@@ -1,0 +1,20 @@
+Building Images
+1. Using a terminal in the root of the sample app repository, run the following
+command. Replace YOUR_DOCKER_USERNAME with your Docker Hub
+username:
+> docker build -t <YOUR_DOCKER_USERNAME>/concepts-build-image-demo .
+> docker build -t mobywhale/concepts-build-image-demo .
+2. Once the build has completed, you can view the image by using the following
+command:
+> docker image ls
+OUTPUT:
+REPOSITORY TAG IMAGE ID CREATED SIZE
+mobywhale/concepts-build-image-demo latest 746c7e06537f 24 seconds ago
+354MB
+3. To view the history (or how the image was created) by using the docker image
+history command:
+> docker image history mobywhale/concepts-build-image-demo
+
+Push the image
+1. Push the image using the docker push command:
+> docker push <YOUR_DOCKER_USERNAME>/concepts-build-image-demo
