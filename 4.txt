@@ -1,3 +1,6 @@
+https://console.cloud.google.com/
+
+
 Step 1: In the Google Cloud console, on the project selector page, select or create a Google 
 Cloud
 project
